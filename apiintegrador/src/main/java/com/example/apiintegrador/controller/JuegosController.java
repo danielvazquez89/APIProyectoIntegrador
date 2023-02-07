@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,17 +40,22 @@ public class JuegosController {
     public void add(@RequestBody Juegos juego) {
         juegosService.saveJuego(juego);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody Juegos juego, @PathVariable Integer id) {
-        try {
-            Juegos existJuego = juegosService.getJuego(id);
-            juego.setId_producto(id);
-            juegosService.saveJuego(juego);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+
+    /*
+     * @PutMapping("/{id}")
+     * public ResponseEntity<?> update(@RequestBody Juegos juego, @PathVariable
+     * Integer id) {
+     * try {
+     * Juegos existJuego = juegosService.getJuego(id);
+     * juego.setId_producto(id);
+     * juegosService.saveJuego(juego);
+     * return new ResponseEntity<>(HttpStatus.OK);
+     * } catch (NoSuchElementException e) {
+     * return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+     * }
+     * }
+     */
+    
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
 

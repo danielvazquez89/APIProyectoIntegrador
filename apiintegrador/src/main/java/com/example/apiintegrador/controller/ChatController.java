@@ -12,52 +12,52 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.apiintegrador.user.UserService;
-import com.example.apiintegrador.user.User;
+import com.example.apiintegrador.chat.Chat;
+import com.example.apiintegrador.chat.ChatService;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/chat")
+public class ChatController {
     @Autowired
-    UserService userService;
+    ChatService chatService;
 
     @GetMapping("")
-    public List<User> list() {
-        return userService.listAllUser();
+    public List<Chat> list() {
+        return chatService.listAllChats();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> get(@PathVariable Integer id) {
+    public ResponseEntity<Chat> get(@PathVariable Integer id) {
         try {
-            User user = userService.getUser(id);
-            return new ResponseEntity<User>(user, HttpStatus.OK);
+            Chat chat = chatService.getChat(id);
+            return new ResponseEntity<Chat>(chat, HttpStatus.OK);
         } catch (NoSuchElementException e) {
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Chat>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping("/")
-    public void add(@RequestBody User user) {
-        userService.saveUser(user);
+    public void add(@RequestBody Chat chat) {
+        chatService.saveChat(chat);
     }
-
     /*
      * @PutMapping("/{id}")
-     * public ResponseEntity<?> update(@RequestBody User user, @PathVariable Integer
+     * public ResponseEntity<?> update(@RequestBody Chat chat, @PathVariable Integer
      * id) {
      * try {
-     * User existUser = userService.getUser(id);
-     * user.setId_usuario(id);
-     * userService.saveUser(user);
+     * Chat existChat = chatService.getChat(id);
+     * chat.setId_chat(id);
+     * chatService.saveChat(chat);
      * return new ResponseEntity<>(HttpStatus.OK);
      * } catch (NoSuchElementException e) {
      * return new ResponseEntity<>(HttpStatus.NOT_FOUND);
      * }
      * }
      */
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
 
-        userService.deleteUser(id);
+        chatService.deleteChat(id);
     }
 }

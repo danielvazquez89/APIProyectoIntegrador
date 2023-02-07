@@ -1,4 +1,4 @@
-package com.example.apiintegrador.Juegos_Favoritos;
+package com.example.apiintegrador.UsuariosFavoritos;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -7,21 +7,21 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "juegos_favoritos")
+@Table(name = "usuarios_favoritos")
 @IdClass(RelationshipId.class)
-public class Juegos_Favoritos implements Serializable {
+public class UsuariosFavoritos implements Serializable {
     @Id
     private int id_usuario;
     @Id
-    private int id_producto;
+    private int id_vendedor;
     private String fecha_like;
 
-    public Juegos_Favoritos() {
+    public UsuariosFavoritos() {
     }
 
-    public Juegos_Favoritos(int id_usuario, int id_producto, String fecha_like) {
+    public UsuariosFavoritos(int id_usuario, int id_vendedor, String fecha_like) {
         this.id_usuario = id_usuario;
-        this.id_producto = id_producto;
+        this.id_vendedor = id_vendedor;
         this.fecha_like = fecha_like;
     }
 
@@ -31,14 +31,6 @@ public class Juegos_Favoritos implements Serializable {
 
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
-    }
-
-    public int getId_producto() {
-        return id_producto;
-    }
-
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
     }
 
     public String getFecha_like() {
@@ -49,15 +41,23 @@ public class Juegos_Favoritos implements Serializable {
         this.fecha_like = fecha_like;
     }
 
+    public int getId_vendedor() {
+        return id_vendedor;
+    }
+
+    public void setId_vendedor(int id_vendedor) {
+        this.id_vendedor = id_vendedor;
+    }
+
 }
 
 class RelationshipId implements Serializable {
     private int id_usuario;
-    private int id_producto;
+    private int id_vendedor;
 
-    public RelationshipId(int id_usuario, int id_producto) {
+    public RelationshipId(int id_usuario, int id_vendedor) {
         this.id_usuario = id_usuario;
-        this.id_producto = id_producto;
+        this.id_vendedor = id_vendedor;
     }
 
     public int getId_usuario() {
@@ -68,13 +68,12 @@ class RelationshipId implements Serializable {
         this.id_usuario = id_usuario;
     }
 
-    public int getId_producto() {
-        return id_producto;
+    public int getId_vendedor() {
+        return id_vendedor;
     }
 
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
+    public void setId_vendedor(int id_vendedor) {
+        this.id_vendedor = id_vendedor;
     }
 
-    // Getter and Setter
 }
