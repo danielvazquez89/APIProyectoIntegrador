@@ -19,6 +19,10 @@ public class JuegosService {
         juegosRepository.save(juegos);
     }
 
+    public List<Juegos> findJuegosByGenero(String genero) {
+        return juegosRepository.findByGenero(genero);
+    }
+
     public Juegos getJuego(Integer id) {
         return juegosRepository.findById(id).get();
     }

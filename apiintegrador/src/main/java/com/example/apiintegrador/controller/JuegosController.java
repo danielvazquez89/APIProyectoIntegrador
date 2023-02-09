@@ -36,6 +36,11 @@ public class JuegosController {
         }
     }
 
+    @GetMapping("/genero/{genero}")
+    public List<Juegos> getByGenre(@PathVariable String genero) {
+        return juegosService.findJuegosByGenero(genero);
+    }
+
     @PostMapping("/")
     public void add(@RequestBody Juegos juego) {
         juegosService.saveJuego(juego);

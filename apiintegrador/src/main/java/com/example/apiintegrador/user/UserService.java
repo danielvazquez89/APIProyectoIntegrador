@@ -15,8 +15,9 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void saveUser(User user) {
-        userRepository.save(user);
+    public User saveUser(User user) {
+        User user_ = userRepository.save(user);
+        return user_;
     }
 
     public User getUser(Integer id) {

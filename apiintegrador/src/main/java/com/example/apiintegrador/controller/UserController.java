@@ -37,8 +37,13 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public void add(@RequestBody User user) {
-        userService.saveUser(user);
+    public ResponseEntity<User> add(@RequestBody User user) {
+        User userReturned = userService.saveUser(user);
+        if (userReturned == null) {
+            return new ResponseEntity<User>(user, HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(user, HttpStatus.CREATED);
+        }
     }
 
     /*
