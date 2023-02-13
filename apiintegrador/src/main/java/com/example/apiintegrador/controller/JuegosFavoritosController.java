@@ -1,10 +1,7 @@
 package com.example.apiintegrador.controller;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,19 +24,15 @@ public class JuegosFavoritosController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Juegos_Favoritos> get(@PathVariable Integer id) {
-        try {
-            Juegos_Favoritos juegosFavoritos = juegosFavoritosService.getJuegoFavorito(id);
-            return new ResponseEntity<Juegos_Favoritos>(juegosFavoritos, HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<Juegos_Favoritos>(HttpStatus.NOT_FOUND);
-        }
+    public List<Juegos_Favoritos> get(@PathVariable Integer id) {
+        return juegosFavoritosService.findJuegosFavoritosUser(id);
     }
 
     @PostMapping("/")
     public void add(@RequestBody Juegos_Favoritos juegoFavorito) {
         juegosFavoritosService.saveJuegoFavorito(juegoFavorito);
     }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         juegosFavoritosService.deleteJuegoFavorito(id);

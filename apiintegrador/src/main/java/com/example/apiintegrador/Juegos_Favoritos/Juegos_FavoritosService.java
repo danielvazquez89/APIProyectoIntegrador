@@ -15,6 +15,10 @@ public class Juegos_FavoritosService {
         return juegosFavoritosRepository.findAll();
     }
 
+    public List<Juegos_Favoritos> findJuegosFavoritosUser(Integer id) {
+        return juegosFavoritosRepository.findByUserID(id);
+    }
+
     public void saveJuegoFavorito(Juegos_Favoritos juegos) {
         juegosFavoritosRepository.save(juegos);
     }

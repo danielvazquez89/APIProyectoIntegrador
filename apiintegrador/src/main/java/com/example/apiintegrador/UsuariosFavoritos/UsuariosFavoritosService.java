@@ -27,4 +27,8 @@ public class UsuariosFavoritosService {
     public void deleteUsuarioFavorito(Integer id) {
         usuariosFavoritosRepository.deleteById(id);
     }
+
+    public List<UsuariosFavoritos> findJuegosFavoritosUser(Integer id) {
+        return usuariosFavoritosRepository.findByUserID(id);
+    }
 }

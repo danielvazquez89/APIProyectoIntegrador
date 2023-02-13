@@ -55,6 +55,8 @@ class RelationshipId implements Serializable {
     private int id_usuario;
     private int id_vendedor;
 
+    public RelationshipId() {}
+
     public RelationshipId(int id_usuario, int id_vendedor) {
         this.id_usuario = id_usuario;
         this.id_vendedor = id_vendedor;

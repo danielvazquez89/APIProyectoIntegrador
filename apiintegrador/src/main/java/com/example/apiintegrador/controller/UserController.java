@@ -36,13 +36,22 @@ public class UserController {
         }
     }
 
+    @GetMapping("/email/{mail}")
+    public User getByEmail(@PathVariable String mail) {
+       return userService.findUserByEmail(mail);
+    }
+
     @PostMapping("/")
     public ResponseEntity<User> add(@RequestBody User user) {
-        User userReturned = userService.saveUser(user);
-        if (userReturned == null) {
-            return new ResponseEntity<User>(user, HttpStatus.BAD_REQUEST);
+        if (userService.findUserByEmail(user.getMail()).getMail() != user.getMail()) {
+            User userReturned = userService.saveUser(user);
+            if (userReturned == null) {
+                return new ResponseEntity<User>(user, HttpStatus.BAD_REQUEST);
+            } else {
+                return new ResponseEntity<>(user, HttpStatus.CREATED);
+            }
         } else {
-            return new ResponseEntity<>(user, HttpStatus.CREATED);
+            return new ResponseEntity<User>(user, HttpStatus.ALREADY_REPORTED);
         }
     }
 
