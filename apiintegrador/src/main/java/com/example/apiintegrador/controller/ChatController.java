@@ -26,6 +26,11 @@ public class ChatController {
         return chatService.listAllChats();
     }
 
+    @GetMapping("/user/{id}")
+    public List<Chat> getChatsUser(@PathVariable Integer id) {
+        return chatService.findChatsByUser(id);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Chat> get(@PathVariable Integer id) {
         try {

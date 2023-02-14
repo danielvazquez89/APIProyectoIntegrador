@@ -42,8 +42,9 @@ public class JuegosController {
     }
 
     @PostMapping("/")
-    public void add(@RequestBody Juegos juego) {
+    public List<Juegos> add(@RequestBody Juegos juego) {
         juegosService.saveJuego(juego);
+        return juegosService.listAllJuegos();
     }
 
     /*

@@ -15,6 +15,10 @@ public class ChatService {
         return chatRepository.findAll();
     }
 
+    public List<Chat> findChatsByUser(Integer id) {
+        return chatRepository.findByUserId(id);
+    }
+
     public void saveChat(Chat chat) {
         chatRepository.save(chat);
     }

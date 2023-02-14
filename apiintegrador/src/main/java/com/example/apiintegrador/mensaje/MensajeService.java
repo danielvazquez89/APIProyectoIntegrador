@@ -16,6 +16,10 @@ public class MensajeService {
         return mensajeRepository.findAll();
     }
 
+    public List<Mensaje> findMessagesByChatId(Integer id) {
+        return mensajeRepository.findByChatId(id);
+    }
+
     public void saveMessage(Mensaje mensaje) {
         mensajeRepository.save(mensaje);
     }

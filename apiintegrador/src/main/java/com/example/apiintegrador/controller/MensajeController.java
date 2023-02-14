@@ -26,6 +26,11 @@ public class MensajeController {
         return mensajeService.listAllMessages();
     }
 
+    @GetMapping("/chat/{id}")
+    public List<Mensaje> getMessagesChat(@PathVariable Integer id) {
+        return mensajeService.findMessagesByChatId(id);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Mensaje> get(@PathVariable Integer id) {
         try {
